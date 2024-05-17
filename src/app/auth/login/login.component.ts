@@ -79,7 +79,7 @@ export class LoginComponent implements OnInit {
               text: `Sesión iniciada correctamente`,
               icon: 'success'
             });
-            // this.router.navigate(['/dashboard']);
+            this.router.navigate(['/dashboard']);
           },
           (err: any) => {
             console.log(err);

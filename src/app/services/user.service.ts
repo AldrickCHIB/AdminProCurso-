@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Usuario } from '../models/usuario.model';
-import { map } from 'rxjs';
+import { map, tap } from 'rxjs';
 // import { UsuarioLogin } from '../models/usuarioLogin.model';
 
 interface UsuarioLogin {
@@ -33,10 +33,11 @@ export class UserService {
 
   login(userData: UsuarioLogin) {
     return this.http.post(`${this.URL2}`, userData)
-      // .pipe(map((response: any) => {
-      //   userData = response
-      //   return userData;
-      // }))
+       .pipe(
+        tap((response: any) => {
+          localStorage.setItem('token', response.token)
+        })
+       )
   }
 
 }
